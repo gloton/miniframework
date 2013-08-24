@@ -67,13 +67,13 @@ class Request
     
     	if(!$this->_metodo){
     	$this->_metodo = 'index';
-    }
+    	}
     
-    if(!isset($this->_argumentos)){
-    $this->_argumentos = array();
-    }
-    //fin- con esto siempre se van a devolver un controlador, un metodo, y argumentos
-    }
+	    if(!isset($this->_argumentos)){
+	    $this->_argumentos = array();
+	    }
+	    //fin- con esto siempre se van a devolver un controlador, un metodo, y argumentos
+	    }
     
     /*
     * inicio 15:40 01-03-2013
@@ -84,18 +84,18 @@ class Request
     	*/
     	public function getControlador()
     	{
-    	return $this->_controlador;
+    		return $this->_controlador;
     	}
     
-    public function getMetodo()
+    	public function getMetodo()
         {
-        return $this->_metodo;
-    }
+        	return $this->_metodo;
+    	}
     
         public function getArgs()
         {
-        return $this->_argumentos;
-    }
+        	return $this->_argumentos;
+    	}
     /*fin 15:40 01-03-2013*/
     
 }
