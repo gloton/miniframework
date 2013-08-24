@@ -42,4 +42,9 @@ require_once APP_PATH . 'View.php';
 #Registro.php
 # Con esto se va a trabajar con el patron singleton "aun no lo explican"
 require_once APP_PATH . 'Registro.php';
+
+$r = new Request();
+echo $r->getControlador() . "<br />";
+echo $r->getMetodo() . "<pre>";
+print_r ($r->getArgs());
  ?>
