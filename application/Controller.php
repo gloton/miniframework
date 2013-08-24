@@ -3,6 +3,12 @@
 //tiene que ser una clase abstracta para que no pueda ser instanciada
 abstract class Controller
 {
+	protected $_view;
+	
+	public function __construct() {
+		//de esta forma tenemos disponible el objeto View en el controlador ppal
+		$this->_view = new View (new Request);
+	}
 
 	#abstract public function index
 	# este medodo es abstracto que obliga a que todas las clases que 
