@@ -16,9 +16,57 @@ class Bootstrap
         //ruta completa al archivo controlador dentro de la carpeta controllers
         $rutaControlador = ROOT . 'controllers' . DS . $controller . '.php';
         
-        echo $rutaControlador;
-        exit();
+        //jagl obtiene el metodo
+        $metodo = $peticion->getMetodo();
+        
+        //jagl obtiene los argumentos (array)
+        $args = $peticion->getArgs();
+        
+        if(is_readable($rutaControlador)) {
 
+        	//si no se le pasa ningun controlador se pasa por defecto el controlador index es decir
+        	//incluira el archivo($rutaControlador) C:\servidor\Apache2\htdocs\mvc-poo-fw\controllers\holaController.php(windows)
+        	//incluira el archivo($rutaControlador) /home/jorgew7/public_html/php/mvc/mvc-poo-fw/controllers/indexController.php(linux)
+        	
+        	require_once $rutaControlador;
+        	
+        	$controller = new $controller;
+        	
+        	# is_callable
+        	#comprueba si una funcion es llamable (es en la documentacion).
+        	#En este caso $controller es un objeto, y metodo un string que contienen
+        	#el nombre de la funcion que esta dentro de ese objeto($controller)
+        	//vamos a revisar si el metodo es valido (revisar)
+        	if(is_callable(array($controller, $metodo))){
+        		$metodo = $peticion->getMetodo();
+        	} else {
+        		$metodo = 'index';
+        	}
+        	
+        	//jagl isset($args) creo que siempre deberia dar verdadero
+        	if(isset($args)){
+        		# call_user_func_array
+        		#Llama  al metodo $metodo del objeto $controller
+        		#($controller->$metodo) los argumentos contenidos en $args
+        		# $controller
+        		#Es el controlador que fue pasado por la url
+        		#$metodo
+        		#Es el metodo que fue pasado por la url
+        	
+        		//aqui es donde se llama a al metodo de del controlador, en el caso del menu hola
+        		//llama al metodo index del controlador holaController
+        		//El metodo puede llamarse de otra forma, siempre y cuando exista en el controlador llamado
+        		//lo cual se determina en la linea if(is_callable(array($controller, $metodo))){
+        		call_user_func_array(array($controller, $metodo), $args);
+        	}
+        	else{
+        		# call_user_func
+        		# Llama al metodo $metodo del objeto $controller
+        		call_user_func(array($controller, $metodo));
+        	}        	 
+        } else {
+            throw new Exception('no encontrado');
+        }
     }
 }
 

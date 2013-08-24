@@ -43,5 +43,11 @@ require_once APP_PATH . 'View.php';
 # Con esto se va a trabajar con el patron singleton "aun no lo explican"
 require_once APP_PATH . 'Registro.php';
 
-Bootstrap::run(new Request());
+try{
+	Bootstrap::run(new Request);
+}
+catch(Exception $e){
+	echo $e->getMessage();
+}
+
  ?>

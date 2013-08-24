@@ -16,7 +16,10 @@ abstract class Controller
 	#            $this->_metodo = 'index'; 
 	#        }
 	#        cuando no se envie un metodo al controlador, o se envie un metodo
-	#        por error, ya eso lo va a corregir el bootstrap
+	#        por error, ya eso lo va a corregir el Bootstrap.php con la condicion
+	# if(is_callable(array($controller, $metodo))){
+	# en donde se verifica si en el objeto $controller existe un metodo llamado $metodo
+	# para mayor informacion ver los comentarios en el archivo Bootstrap.php
     abstract public function index ();
 
 }

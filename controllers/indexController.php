@@ -9,6 +9,9 @@ class indexController extends Controller
 	{
 		echo "Hola desde el indexController...";
 	}
+	public function hola() {
+		echo "Hola jorge";
+	}
 }
 
 ?>
